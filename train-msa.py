@@ -26,6 +26,9 @@ from sequence_models.losses import MaskedCrossEntropyLossMSA
 from evodiff.metrics import MaskedAccuracyMSA
 from torch.utils.data import Subset
 from sequence_models.utils import warmup, transformer_lr
+from dotenv import load_dotenv
+
+load_dotenv()
 
 home = str(pathlib.Path.home())
 

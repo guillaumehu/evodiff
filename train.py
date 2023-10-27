@@ -20,12 +20,14 @@ from torch.utils.data import Subset
 from sequence_models.samplers import SortishSampler, ApproxBatchSampler
 from sequence_models.datasets import UniRefDataset
 from sequence_models.constants import MSA_ALPHABET
-from evodiff.collaters import OAMaskCollater, D3PMCollater
+from evodiff.collaters import OAMaskCollater, D3PMCollater # NOTE GH: These are callable classes, use to collate data batches. 
 from evodiff.losses import OAMaskedCrossEntropyLoss, D3PMCELoss, D3PMLVBLoss
 from sequence_models.metrics import MaskedAccuracy
 from sequence_models.utils import warmup 
 import sys
+from dotenv import load_dotenv
 
+load_dotenv()
 
 sys.setrecursionlimit(1000) # must be as large as diffusion timesteps for Q_bar calculation
 
@@ -162,6 +164,7 @@ def train(gpu, args):
     # ----------------------------------------------------------
     metadata = np.load(data_dir + 'lengths_and_offsets.npz')
     ds_train = UniRefDataset(data_dir, 'train', structure=False)
+    breakpoint()
     train_idx = ds_train.indices
     if args.mini_run:
         tindices = np.arange(0,1000) # np.arange(21546293,31546293,1)#(1000000,21546293, 1)
