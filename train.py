@@ -164,7 +164,6 @@ def train(gpu, args):
     # ----------------------------------------------------------
     metadata = np.load(data_dir + 'lengths_and_offsets.npz')
     ds_train = UniRefDataset(data_dir, 'train', structure=False)
-    breakpoint()
     train_idx = ds_train.indices
     if args.mini_run:
         tindices = np.arange(0,1000) # np.arange(21546293,31546293,1)#(1000000,21546293, 1)
